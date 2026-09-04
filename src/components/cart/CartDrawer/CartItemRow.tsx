@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TrashIcon } from '@/components/icons/Icons';
 import FadeImage from '@/components/ui/FadeImage/FadeImage';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
@@ -16,7 +16,7 @@ interface CartItemRowProps {
 /** Linha do carrinho: miniatura, dados do item, controle de quantidade e remoção. */
 export default function CartItemRow({ item, onIncrease, onDecrease, onRemove }: CartItemRowProps) {
   return (
-    <motion.article
+    <m.article
       layout
       className={styles.item}
       initial={{ opacity: 0, scale: 0.92 }}
@@ -32,26 +32,26 @@ export default function CartItemRow({ item, onIncrease, onDecrease, onRemove }: 
         <p>{item.description}</p>
         <PriceEth value={item.price} compact />
         <div className={styles.stepper}>
-          <motion.button
+          <m.button
             whileTap={{ scale: 0.85 }}
             type="button"
             aria-label="Diminuir quantidade"
             onClick={onDecrease}
           >
             −
-          </motion.button>
+          </m.button>
           <span>{item.quantity}</span>
-          <motion.button
+          <m.button
             whileTap={{ scale: 0.85 }}
             type="button"
             aria-label="Aumentar quantidade"
             onClick={onIncrease}
           >
             +
-          </motion.button>
+          </m.button>
         </div>
       </div>
-      <motion.button
+      <m.button
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.9 }}
         className={styles.trash}
@@ -60,7 +60,7 @@ export default function CartItemRow({ item, onIncrease, onDecrease, onRemove }: 
         onClick={onRemove}
       >
         <TrashIcon />
-      </motion.button>
-    </motion.article>
+      </m.button>
+    </m.article>
   );
 }

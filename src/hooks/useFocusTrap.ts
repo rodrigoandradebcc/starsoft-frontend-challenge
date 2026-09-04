@@ -4,25 +4,18 @@ import { useEffect, useRef, type RefObject } from 'react';
 const FOCUSABLE_SELECTOR = 'button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])';
 
 interface FocusTrapOptions {
-  /** Enquanto verdadeiro, o Tab circula dentro do container e Escape dispara `onEscape`. */
   active: boolean;
   containerRef: RefObject<HTMLElement | null>;
-  /** Elemento que recebe o foco na abertura. */
   initialFocusRef?: RefObject<HTMLElement | null>;
   onEscape: () => void;
 }
 
-/**
- * Mantém o foco dentro de um container modal e devolve o foco ao elemento
- * de origem quando ele fecha.
- */
 export function useFocusTrap({
   active,
   containerRef,
   initialFocusRef,
   onEscape,
 }: FocusTrapOptions) {
-  // Mantém o callback atualizado sem reiniciar o efeito a cada render.
   const onEscapeRef = useRef(onEscape);
   useEffect(() => {
     onEscapeRef.current = onEscape;

@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowIcon } from '@/components/icons/Icons';
 import FadeImage from '@/components/ui/FadeImage/FadeImage';
@@ -17,7 +17,7 @@ export default function ProductDetails({ product }: { product: Product }) {
       <Link className={styles.back} href="/">
         <ArrowIcon size={22} /> Voltar para a loja
       </Link>
-      <motion.article
+      <m.article
         className={styles.details}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -37,15 +37,15 @@ export default function ProductDetails({ product }: { product: Product }) {
           <h1>{product.name}</h1>
           <p>{product.description}</p>
           <PriceEth value={product.price} />
-          <motion.button
+          <m.button
             whileTap={{ scale: 0.98 }}
             type="button"
             onClick={() => dispatch(addItem(product))}
           >
             {inCart ? 'ADICIONADO AO CARRINHO' : 'COMPRAR'}
-          </motion.button>
+          </m.button>
         </div>
-      </motion.article>
+      </m.article>
     </main>
   );
 }

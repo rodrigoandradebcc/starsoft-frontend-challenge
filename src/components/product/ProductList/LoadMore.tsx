@@ -8,15 +8,6 @@ interface LoadMoreProps {
   onLoadMore: () => void;
 }
 
-function label({
-  isFetchingNextPage,
-  hasNextPage,
-}: Pick<LoadMoreProps, 'isFetchingNextPage' | 'hasNextPage'>) {
-  if (isFetchingNextPage) return 'Carregando…';
-  return hasNextPage ? 'Carregar mais' : 'Você já viu tudo';
-}
-
-/** Barra de progresso do catálogo, botão de paginação e recuperação de erro. */
 export default function LoadMore({
   progress,
   hasNextPage,
@@ -37,7 +28,7 @@ export default function LoadMore({
         <span style={{ width: `${progress}%` }} />
       </div>
       <button type="button" disabled={!hasNextPage || isFetchingNextPage} onClick={onLoadMore}>
-        {label({ isFetchingNextPage, hasNextPage })}
+        {isFetchingNextPage ? 'Carregando…' : hasNextPage ? 'Carregar mais' : 'Você já viu tudo'}
       </button>
       {hasPaginationError ? (
         <p role="alert">

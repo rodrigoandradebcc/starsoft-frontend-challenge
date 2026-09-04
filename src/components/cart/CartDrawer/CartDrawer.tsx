@@ -1,5 +1,5 @@
 'use client';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { useCallback, useRef } from 'react';
 import { ArrowIcon } from '@/components/icons/Icons';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
@@ -36,7 +36,7 @@ export default function CartDrawer() {
     <AnimatePresence>
       {open ? (
         <div className={styles.portal}>
-          <motion.button
+          <m.button
             className={styles.backdrop}
             type="button"
             aria-label="Fechar carrinho"
@@ -45,7 +45,7 @@ export default function CartDrawer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           />
-          <motion.aside
+          <m.aside
             ref={drawerRef}
             className={styles.drawer}
             role="dialog"
@@ -57,7 +57,7 @@ export default function CartDrawer() {
             transition={{ type: 'spring', stiffness: 290, damping: 31 }}
           >
             <header>
-              <motion.button
+              <m.button
                 ref={closeButtonRef}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.92 }}
@@ -67,7 +67,7 @@ export default function CartDrawer() {
                 onClick={close}
               >
                 <ArrowIcon />
-              </motion.button>
+              </m.button>
               <h2 id="cart-title">Mochila de Compras</h2>
             </header>
             <div className={styles.items}>
@@ -83,7 +83,7 @@ export default function CartDrawer() {
                     />
                   ))
                 ) : (
-                  <motion.div
+                  <m.div
                     key="empty"
                     className={styles.empty}
                     initial={{ opacity: 0 }}
@@ -92,7 +92,7 @@ export default function CartDrawer() {
                   >
                     <p>Seu carrinho está vazio</p>
                     <span>Escolha um item para começar sua coleção.</span>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -101,7 +101,7 @@ export default function CartDrawer() {
                 <strong>TOTAL</strong>
                 <PriceEth value={total} />
               </div>
-              <motion.button
+              <m.button
                 whileTap={{ scale: 0.98 }}
                 className={styles.checkout}
                 type="button"
@@ -109,9 +109,9 @@ export default function CartDrawer() {
                 onClick={finish}
               >
                 {finished ? 'COMPRA FINALIZADA!' : 'FINALIZAR COMPRA'}
-              </motion.button>
+              </m.button>
             </footer>
-          </motion.aside>
+          </m.aside>
         </div>
       ) : null}
     </AnimatePresence>
