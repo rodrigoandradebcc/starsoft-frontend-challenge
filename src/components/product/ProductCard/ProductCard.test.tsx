@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/test/renderWithProviders';
 import ProductCard from './ProductCard';
 
-jest.mock('framer-motion', () => ({ motion: { article: 'article', button: 'button' } }));
+jest.mock('framer-motion', () => ({ m: { article: 'article', button: 'button' } }));
 
 const product = {
   id: '1',

@@ -5,7 +5,7 @@ import PageTransition from './PageTransition';
 jest.mock('next/navigation', () => ({ usePathname: () => '/products/1' }));
 jest.mock('framer-motion', () => ({
   AnimatePresence: ({ children }: { children: ReactNode }) => children,
-  motion: { div: 'div' },
+  m: { div: 'div' },
 }));
 
 describe('PageTransition', () => {
