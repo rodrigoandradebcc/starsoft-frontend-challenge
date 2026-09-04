@@ -1,0 +1,20 @@
+.price,
+.compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.price {
+  font-size: 16px;
+}
+.compact {
+  font-size: 14px;
+}
+.price svg,
+.compact svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+}

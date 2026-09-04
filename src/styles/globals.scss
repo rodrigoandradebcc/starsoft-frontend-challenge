@@ -1,0 +1,121 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body,
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  list-style: none;
+}
+button,
+a {
+  font: inherit;
+}
+button {
+  color: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  --primary: #ff8310;
+  --surface: #18191f;
+  --background: #202020;
+  --surface-alt: #393939;
+  --thumbnail: #202129;
+  --text: #fff;
+  --muted: #a7a7aa;
+  --border: rgb(255 255 255 / 8%);
+  --radius: 8px;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-poppins), sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex: 1;
+}
+.container {
+  @include container;
+}
+.skipLink {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: #171717;
+  transform: translateY(-160%);
+  &:focus {
+    transform: translateY(0);
+  }
+}
+.statusPage {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 32px;
+}
+.statusCard {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  max-width: 520px;
+}
+.statusCard p {
+  color: var(--muted);
+}
+.statusAction {
+  background: var(--primary);
+  color: #161616;
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
