@@ -1,0 +1,82 @@
+@use '../../../styles/mixins' as *;
+.section {
+  @include container;
+  padding-top: clamp(80px, 10vw, 170px);
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.load {
+  width: min(100%, 370px);
+  margin: clamp(80px, 12vw, 170px) auto 0;
+  text-align: center;
+}
+.track {
+  overflow: hidden;
+  height: 9px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: var(--surface-alt);
+}
+.track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+  transition: width 0.35s ease;
+}
+.load > button {
+  width: 100%;
+  min-height: 70px;
+  border-radius: var(--radius);
+  background: var(--surface-alt);
+  font-weight: 600;
+}
+.load > button:disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+.load p {
+  margin-top: 12px;
+  color: #ffb36c;
+  font-size: 13px;
+}
+.load p button {
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+}
+.empty {
+  min-height: 60vh;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  text-align: center;
+}
+.empty p {
+  color: var(--muted);
+}
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

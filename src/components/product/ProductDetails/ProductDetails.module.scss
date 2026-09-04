@@ -1,0 +1,78 @@
+@use '../../../styles/mixins' as *;
+.wrap {
+  @include container;
+  padding-block: clamp(45px, 7vw, 100px);
+}
+.back {
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.back svg {
+  width: 22px;
+  color: var(--primary);
+}
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(40px, 7vw, 90px);
+  align-items: center;
+  margin-top: 40px;
+}
+.visual {
+  position: relative;
+  min-height: 590px;
+  border-radius: 14px;
+  background: var(--thumbnail);
+}
+.visual::before {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: rgb(255 131 16 / 8%);
+  filter: blur(35px);
+  content: '';
+}
+.visual img {
+  object-fit: contain;
+  padding: clamp(30px, 6vw, 80px);
+}
+.content {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+}
+.eyebrow {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+.content h1 {
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05;
+}
+.content p {
+  max-width: 580px;
+  color: var(--muted);
+}
+.content button {
+  @include focus-ring;
+  @include uppercase;
+  width: min(100%, 370px);
+  min-height: 60px;
+  margin-top: 16px;
+  border-radius: var(--radius);
+  background: var(--primary);
+}
+@media (max-width: 800px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .visual {
+    min-height: 380px;
+  }
+}
