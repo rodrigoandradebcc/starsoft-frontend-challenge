@@ -17,13 +17,18 @@ export default function ProductDetails({ product }: { product: Product }) {
       <Link className={styles.back} href="/">
         <ArrowIcon size={22} /> Voltar para a loja
       </Link>
-      <motion.article className={styles.details} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <motion.article
+        className={styles.details}
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+      >
         <div className={styles.visual}>
           <FadeImage
             src={product.image}
             alt={product.name}
             fill
-            priority
+            preload
             sizes="(max-width: 800px) 90vw, 48vw"
           />
         </div>
@@ -32,9 +37,13 @@ export default function ProductDetails({ product }: { product: Product }) {
           <h1>{product.name}</h1>
           <p>{product.description}</p>
           <PriceEth value={product.price} />
-          <button type="button" onClick={() => dispatch(addItem(product))}>
+          <motion.button
+            whileTap={{ scale: 0.98 }}
+            type="button"
+            onClick={() => dispatch(addItem(product))}
+          >
             {inCart ? 'ADICIONADO AO CARRINHO' : 'COMPRAR'}
-          </button>
+          </motion.button>
         </div>
       </motion.article>
     </main>

@@ -82,76 +82,99 @@ export default function CartDrawer() {
             transition={{ type: 'spring', stiffness: 290, damping: 31 }}
           >
             <header>
-              <button
+              <motion.button
                 ref={closeButtonRef}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.92 }}
                 className={styles.back}
                 type="button"
                 aria-label="Fechar carrinho"
                 onClick={() => dispatch(closeCart())}
               >
                 <ArrowIcon />
-              </button>
+              </motion.button>
               <h2 id="cart-title">Mochila de Compras</h2>
             </header>
             <div className={styles.items}>
-              {items.length ? (
-                items.map((item) => (
-                  <motion.article layout key={item.id} className={styles.item}>
-                    <div className={styles.thumb}>
-                      <FadeImage src={item.image} alt="" fill sizes="118px" />
-                    </div>
-                    <div className={styles.info}>
-                      <h3>{item.name}</h3>
-                      <p>{item.description}</p>
-                      <PriceEth value={item.price} compact />
-                      <div className={styles.stepper}>
-                        <button
-                          type="button"
-                          aria-label="Diminuir quantidade"
-                          onClick={() => dispatch(decreaseItem(item.id))}
-                        >
-                          −
-                        </button>
-                        <span>{item.quantity}</span>
-                        <button
-                          type="button"
-                          aria-label="Aumentar quantidade"
-                          onClick={() => dispatch(addItem(item))}
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      className={styles.trash}
-                      type="button"
-                      aria-label={`Remover item ${item.name}`}
-                      onClick={() => dispatch(removeItem(item.id))}
+              <AnimatePresence initial={false}>
+                {items.length ? (
+                  items.map((item) => (
+                    <motion.article
+                      layout
+                      key={item.id}
+                      className={styles.item}
+                      initial={{ opacity: 0, scale: 0.92 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.92 }}
+                      transition={{ duration: 0.22, ease: 'easeOut' }}
                     >
-                      <TrashIcon />
-                    </button>
-                  </motion.article>
-                ))
-              ) : (
-                <div className={styles.empty}>
-                  <p>Seu carrinho está vazio</p>
-                  <span>Escolha um item para começar sua coleção.</span>
-                </div>
-              )}
+                      <div className={styles.thumb}>
+                        <FadeImage src={item.image} alt="" fill sizes="118px" />
+                      </div>
+                      <div className={styles.info}>
+                        <h3>{item.name}</h3>
+                        <p>{item.description}</p>
+                        <PriceEth value={item.price} compact />
+                        <div className={styles.stepper}>
+                          <motion.button
+                            whileTap={{ scale: 0.85 }}
+                            type="button"
+                            aria-label="Diminuir quantidade"
+                            onClick={() => dispatch(decreaseItem(item.id))}
+                          >
+                            −
+                          </motion.button>
+                          <span>{item.quantity}</span>
+                          <motion.button
+                            whileTap={{ scale: 0.85 }}
+                            type="button"
+                            aria-label="Aumentar quantidade"
+                            onClick={() => dispatch(addItem(item))}
+                          >
+                            +
+                          </motion.button>
+                        </div>
+                      </div>
+                      <motion.button
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.9 }}
+                        className={styles.trash}
+                        type="button"
+                        aria-label={`Remover item ${item.name}`}
+                        onClick={() => dispatch(removeItem(item.id))}
+                      >
+                        <TrashIcon />
+                      </motion.button>
+                    </motion.article>
+                  ))
+                ) : (
+                  <motion.div
+                    key="empty"
+                    className={styles.empty}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <p>Seu carrinho está vazio</p>
+                    <span>Escolha um item para começar sua coleção.</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
             <footer>
               <div className={styles.total}>
                 <strong>TOTAL</strong>
                 <PriceEth value={total} />
               </div>
-              <button
+              <motion.button
+                whileTap={{ scale: 0.98 }}
                 className={styles.checkout}
                 type="button"
                 disabled={!items.length && !finished}
                 onClick={finish}
               >
                 {finished ? 'COMPRA FINALIZADA!' : 'FINALIZAR COMPRA'}
-              </button>
+              </motion.button>
             </footer>
           </motion.aside>
         </div>

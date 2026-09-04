@@ -21,7 +21,7 @@ export default function ProductList() {
       <h1 className={styles.srOnly}>Marketplace de NFTs Starsoft</h1>
       <div className={styles.grid}>
         {products.map((product, index) => (
-          <ProductCard key={product.id} product={product} priority={index < 4} />
+          <ProductCard key={product.id} product={product} preload={index < 4} />
         ))}
       </div>
       <div className={styles.load}>

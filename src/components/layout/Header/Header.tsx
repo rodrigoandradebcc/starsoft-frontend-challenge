@@ -20,7 +20,7 @@ export default function Header() {
       <header className={styles.header}>
         <div className={styles.inner}>
           <Link className={styles.logo} href="/" aria-label="Starsoft — página inicial">
-            <Image src="/logo.svg" alt="Starsoft" width={101} height={38} priority unoptimized />
+            <Image src="/logo.svg" alt="Starsoft" width={101} height={38} preload unoptimized />
           </Link>
           <button
             className={styles.cart}

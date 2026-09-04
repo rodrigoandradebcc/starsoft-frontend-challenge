@@ -10,7 +10,7 @@ import CartDrawer from './CartDrawer';
 
 jest.mock('framer-motion', () => ({
   AnimatePresence: ({ children }: { children: ReactNode }) => children,
-  motion: { button: 'button', aside: 'aside', article: 'article' },
+  motion: { button: 'button', aside: 'aside', article: 'article', div: 'div' },
 }));
 
 const product = {

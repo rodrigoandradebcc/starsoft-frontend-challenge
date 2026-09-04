@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import type { ReactNode } from 'react';
 import Footer from '@/components/layout/Footer/Footer';
 import Header from '@/components/layout/Header/Header';
+import PageTransition from '@/components/layout/PageTransition/PageTransition';
 import { Providers } from './providers';
 import '@/styles/globals.scss';
 
@@ -42,7 +43,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           <div className="shell">
             <Header />
-            <div className="main">{children}</div>
+            <div className="main">
+              <PageTransition>{children}</PageTransition>
+            </div>
             <Footer />
           </div>
         </Providers>
