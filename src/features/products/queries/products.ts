@@ -1,6 +1,6 @@
 import { infiniteQueryOptions } from '@tanstack/react-query';
-import { productsService } from '@/lib/api/products.service';
-import { DEFAULT_PAGE_SIZE } from '@/lib/api/types';
+import { productsService } from '@/features/products/api/products.service';
+import { DEFAULT_PAGE_SIZE } from '@/features/products/api/types';
 
 export function productsInfiniteOptions() {
   return infiniteQueryOptions({

@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { clearCart } from '@/store/cartSlice';
+import { clearCart } from '@/features/cart/store/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
 const CONFIRMATION_MS = 2200;

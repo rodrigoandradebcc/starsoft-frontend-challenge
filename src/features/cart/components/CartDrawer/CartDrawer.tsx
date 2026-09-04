@@ -5,13 +5,13 @@ import { ArrowIcon } from '@/components/icons/Icons';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useFocusTrap } from '@/hooks/useFocusTrap';
-import { selectCartItems, selectCartTotal } from '@/store/cartSelectors';
-import { addItem, decreaseItem, removeItem } from '@/store/cartSlice';
+import { selectCartItems, selectCartTotal } from '@/features/cart/store/cartSelectors';
+import { addItem, decreaseItem, removeItem } from '@/features/cart/store/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { closeCart } from '@/store/uiSlice';
+import { closeCart } from '@/features/cart/store/uiSlice';
 import styles from './CartDrawer.module.scss';
 import CartItemRow from './CartItemRow';
-import { useCheckout } from './useCheckout';
+import { useCheckout } from '@/features/cart/hooks/useCheckout';
 
 export default function CartDrawer() {
   const dispatch = useAppDispatch();

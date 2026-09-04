@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createCartPersistenceMiddleware } from './cartMiddleware';
-import cart from './cartSlice';
-import ui from './uiSlice';
+import { cartReducer, cartUiReducer, createCartPersistenceMiddleware } from '@/features/cart';
 
 export function makeStore() {
   const persistence = createCartPersistenceMiddleware();
   return configureStore({
-    reducer: { cart, ui },
+    reducer: { cart: cartReducer, ui: cartUiReducer },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(persistence.middleware),
   });
 }

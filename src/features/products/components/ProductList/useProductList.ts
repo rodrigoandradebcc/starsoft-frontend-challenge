@@ -1,7 +1,7 @@
 'use client';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
-import type { Product } from '@/lib/api/types';
-import { productsInfiniteOptions } from '@/lib/query/products';
+import type { Product } from '@/features/products/api/types';
+import { productsInfiniteOptions } from '@/features/products/queries/products';
 
 export interface ProductListState {
   products: Product[];

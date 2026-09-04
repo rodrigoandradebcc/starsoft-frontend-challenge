@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { ArrowIcon } from '@/components/icons/Icons';
 import FadeImage from '@/components/ui/FadeImage/FadeImage';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
-import type { Product } from '@/lib/api/types';
-import { addItem } from '@/store/cartSlice';
+import type { Product } from '@/features/products/api/types';
+import { addItem } from '@/features/cart';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import styles from './ProductDetails.module.scss';
 

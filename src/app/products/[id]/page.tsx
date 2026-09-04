@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
-import ProductDetails from '@/components/product/ProductDetails/ProductDetails';
-import { productsService } from '@/lib/api/products.service';
+import ProductDetails from '@/features/products/components/ProductDetails/ProductDetails';
+import { productsService } from '@/features/products';
 
 export const revalidate = 300;
 export const dynamicParams = false;

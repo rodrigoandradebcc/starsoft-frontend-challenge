@@ -1,9 +1,9 @@
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import ProductList from '@/components/product/ProductList/ProductList';
-import ProductListSkeleton from '@/components/product/ProductList/ProductListSkeleton';
+import ProductList from '@/features/products/components/ProductList/ProductList';
+import ProductListSkeleton from '@/features/products/components/ProductList/ProductListSkeleton';
 import { createQueryClient } from '@/lib/query/client';
-import { productsInfiniteOptions } from '@/lib/query/products';
+import { productsInfiniteOptions } from '@/features/products';
 
 export const revalidate = 300;
 

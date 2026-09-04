@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { productsService } from '@/lib/api/products.service';
+import { productsService } from '@/features/products';
 import { getSiteUrl } from '@/lib/config/site-url';
 
 export const revalidate = 300;

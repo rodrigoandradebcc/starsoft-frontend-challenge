@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import { TrashIcon } from '@/components/icons/Icons';
 import FadeImage from '@/components/ui/FadeImage/FadeImage';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
-import type { CartItem } from '@/store/cartSlice';
+import type { CartItem } from '@/features/cart/store/cartSlice';
 import styles from './CartDrawer.module.scss';
 
 interface CartItemRowProps {

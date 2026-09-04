@@ -7,7 +7,7 @@ jest.mock('@tanstack/react-query', () => ({
   infiniteQueryOptions: (options: unknown) => options,
   useSuspenseInfiniteQuery: jest.fn(),
 }));
-jest.mock('@/components/product/ProductCard/ProductCard', () => ({
+jest.mock('@/features/products/components/ProductCard/ProductCard', () => ({
   __esModule: true,
   default: ({ product }: { product: { name: string } }) => <article>{product.name}</article>,
 }));

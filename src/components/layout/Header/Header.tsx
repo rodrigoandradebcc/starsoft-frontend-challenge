@@ -3,12 +3,11 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BagIcon } from '@/components/icons/Icons';
-import { selectCartCount } from '@/store/cartSelectors';
+import { openCart, selectCartCount } from '@/features/cart';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { openCart } from '@/store/uiSlice';
 import styles from './Header.module.scss';
 
-const CartDrawer = dynamic(() => import('@/components/cart/CartDrawer/CartDrawer'));
+const CartDrawer = dynamic(() => import('@/features/cart/components/CartDrawer/CartDrawer'));
 
 export default function Header() {
   const dispatch = useAppDispatch();

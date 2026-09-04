@@ -1,5 +1,5 @@
 import { isAllowedImageUrl } from '@/lib/config/images';
-import { apiFetch } from './client';
+import { apiFetch } from '@/lib/api/client';
 import {
   DEFAULT_PAGE_SIZE,
   type ListProductsParams,

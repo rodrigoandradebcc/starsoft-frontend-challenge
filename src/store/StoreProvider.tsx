@@ -1,8 +1,7 @@
 'use client';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { hydrateCart } from './cartSlice';
-import { loadCart } from './cartStorage';
+import { hydrateCart, loadCart } from '@/features/cart';
 import { makeStore } from './store';
 
 export function StoreProvider({ children }: { children: ReactNode }) {

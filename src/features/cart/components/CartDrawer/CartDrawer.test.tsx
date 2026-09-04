@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { addItem } from '@/store/cartSlice';
+import { addItem } from '@/features/cart/store/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 import { makeStore } from '@/store/store';
-import { openCart } from '@/store/uiSlice';
+import { openCart } from '@/features/cart/store/uiSlice';
 import CartDrawer from './CartDrawer';
 
 jest.mock('framer-motion', () => ({

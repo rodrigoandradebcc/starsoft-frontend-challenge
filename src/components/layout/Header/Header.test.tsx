@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
-import { addItem } from '@/store/cartSlice';
+import { addItem } from '@/features/cart/store/cartSlice';
 import { makeStore } from '@/store/store';
 import Header from './Header';
 
-jest.mock('@/components/cart/CartDrawer/CartDrawer', () => ({
+jest.mock('@/features/cart/components/CartDrawer/CartDrawer', () => ({
   __esModule: true,
   default: () => <div data-testid="cart-drawer" />,
 }));

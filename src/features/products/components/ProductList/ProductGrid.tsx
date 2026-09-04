@@ -1,5 +1,5 @@
-import ProductCard from '@/components/product/ProductCard/ProductCard';
-import type { Product } from '@/lib/api/types';
+import ProductCard from '@/features/products/components/ProductCard/ProductCard';
+import type { Product } from '@/features/products/api/types';
 import styles from './ProductList.module.scss';
 
 const PRELOADED_CARDS = 4;
