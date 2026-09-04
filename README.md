@@ -6,7 +6,8 @@ de compras persistente no navegador.
 
 ## Demonstração
 
-[Assistir ao vídeo de demonstração](https://jam.dev/c/43e93671-9f8a-427e-a016-5c5b1c96cdef)
+- **Aplicação publicada:** <https://starsoft-frontend-challenge-one.vercel.app/>
+- **Vídeo de demonstração:** <https://jam.dev/c/43e93671-9f8a-427e-a016-5c5b1c96cdef>
 
 ## Funcionalidades
 
@@ -73,6 +74,10 @@ O endereço padrão é `https://api-challenge.starsoft.games/api/v1` e pode ser 
 NEXT_PUBLIC_API_BASE_URL=https://api-challenge.starsoft.games/api/v1
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
+
+`NEXT_PUBLIC_SITE_URL` define a base absoluta dos metadados, do sitemap e do robots. Em produção
+ela aponta para `https://starsoft-frontend-challenge-one.vercel.app`; sem a variável, a aplicação
+cai no padrão `http://localhost:3000`.
 
 O Swagger publicado ainda aponta para um aplicativo antigo do Heroku. O serviço converte o contrato
 real `{ products, count }`, incluindo o preço recebido como string, para um modelo interno tipado.
