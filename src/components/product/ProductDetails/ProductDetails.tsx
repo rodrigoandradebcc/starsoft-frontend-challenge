@@ -15,7 +15,7 @@ export default function ProductDetails({ product }: { product: Product }) {
   return (
     <main id="conteudo" className={styles.wrap}>
       <Link className={styles.back} href="/">
-        <ArrowIcon /> Voltar para a loja
+        <ArrowIcon size={22} /> Voltar para a loja
       </Link>
       <motion.article className={styles.details} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <div className={styles.visual}>

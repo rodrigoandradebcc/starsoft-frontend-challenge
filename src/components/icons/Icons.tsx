@@ -1,5 +1,7 @@
 import type { SVGProps } from 'react';
-export function BagIcon(props: SVGProps<SVGSVGElement>) {
+
+type IconProps = SVGProps<SVGSVGElement> & { size?: number };
+export function BagIcon({ size = 29, ...props }: IconProps) {
   return (
     <svg
       viewBox="0 0 33 33"
@@ -8,6 +10,8 @@ export function BagIcon(props: SVGProps<SVGSVGElement>) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      width={size}
+      height={size}
       aria-hidden="true"
       {...props}
     >
@@ -22,7 +26,7 @@ export function BagIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
+export function ArrowIcon({ size = 24, ...props }: IconProps) {
   return (
     <svg
       viewBox="0 0 34 34"
@@ -31,6 +35,8 @@ export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      width={size}
+      height={size}
       aria-hidden="true"
       {...props}
     >
@@ -39,7 +45,7 @@ export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export function TrashIcon(props: SVGProps<SVGSVGElement>) {
+export function TrashIcon({ size = 19, ...props }: IconProps) {
   return (
     <svg
       viewBox="0 0 26 26"
@@ -48,6 +54,8 @@ export function TrashIcon(props: SVGProps<SVGSVGElement>) {
       strokeWidth="1.3"
       strokeLinecap="round"
       strokeLinejoin="round"
+      width={size}
+      height={size}
       aria-hidden="true"
       {...props}
     >
