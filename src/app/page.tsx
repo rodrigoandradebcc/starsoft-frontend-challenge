@@ -1,5 +1,7 @@
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { Suspense } from 'react';
 import ProductList from '@/components/product/ProductList/ProductList';
+import ProductListSkeleton from '@/components/product/ProductList/ProductListSkeleton';
 import { createQueryClient } from '@/lib/query/client';
 import { productsInfiniteOptions } from '@/lib/query/products';
 
@@ -11,7 +13,9 @@ export default async function HomePage() {
   return (
     <main id="conteudo">
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProductList />
+        <Suspense fallback={<ProductListSkeleton />}>
+          <ProductList />
+        </Suspense>
       </HydrationBoundary>
     </main>
   );

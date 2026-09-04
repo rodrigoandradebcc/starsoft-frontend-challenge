@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import type { ReactNode } from 'react';
 import Footer from '@/components/layout/Footer/Footer';
@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#191a20',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

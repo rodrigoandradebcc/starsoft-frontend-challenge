@@ -47,7 +47,7 @@ docker compose up --build
 ```bash
 npm run dev          # servidor de desenvolvimento
 npm run build        # build de produção
-npm start            # inicia o build
+npm start            # serve o build standalone de produção
 npm test             # testes
 npm run lint         # ESLint
 npm run typecheck    # TypeScript

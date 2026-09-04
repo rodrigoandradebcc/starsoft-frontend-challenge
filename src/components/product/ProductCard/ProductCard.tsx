@@ -8,7 +8,13 @@ import { addItem } from '@/store/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import styles from './ProductCard.module.scss';
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: Product;
+  priority?: boolean;
+}) {
   const dispatch = useAppDispatch();
   const inCart = useAppSelector((state) => state.cart.items.some(({ id }) => id === product.id));
   return (
@@ -29,6 +35,7 @@ export default function ProductCard({ product }: { product: Product }) {
           alt={product.name}
           fill
           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 44vw, (max-width: 1280px) 30vw, 300px"
+          priority={priority}
         />
       </Link>
       <div className={styles.body}>
