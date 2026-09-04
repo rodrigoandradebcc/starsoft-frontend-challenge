@@ -25,14 +25,17 @@ export function BagIcon(props: SVGProps<SVGSVGElement>) {
 export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 34 34"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.6"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden="true"
       {...props}
     >
-      <path d="m15 5-7 7 7 7M8 12h11" />
+      <path d="M5.90283 17.0479H26.7362" />
+      <path d="M14.3054 25.4149L5.90259 17.0482L14.3054 8.68018" />
     </svg>
   );
 }

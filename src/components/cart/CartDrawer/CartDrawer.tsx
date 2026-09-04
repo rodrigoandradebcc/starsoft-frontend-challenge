@@ -1,8 +1,8 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowIcon, TrashIcon } from '@/components/icons/Icons';
+import FadeImage from '@/components/ui/FadeImage/FadeImage';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
 import { addItem, clearCart, decreaseItem, removeItem } from '@/store/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -98,7 +98,7 @@ export default function CartDrawer() {
                 items.map((item) => (
                   <motion.article layout key={item.id} className={styles.item}>
                     <div className={styles.thumb}>
-                      <Image src={item.image} alt="" fill sizes="84px" />
+                      <FadeImage src={item.image} alt="" fill sizes="118px" />
                     </div>
                     <div className={styles.info}>
                       <h3>{item.name}</h3>

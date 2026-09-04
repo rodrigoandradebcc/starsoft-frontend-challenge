@@ -1,8 +1,8 @@
 'use client';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowIcon } from '@/components/icons/Icons';
+import FadeImage from '@/components/ui/FadeImage/FadeImage';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
 import type { Product } from '@/lib/api/types';
 import { addItem } from '@/store/cartSlice';
@@ -19,7 +19,7 @@ export default function ProductDetails({ product }: { product: Product }) {
       </Link>
       <motion.article className={styles.details} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <div className={styles.visual}>
-          <Image
+          <FadeImage
             src={product.image}
             alt={product.name}
             fill

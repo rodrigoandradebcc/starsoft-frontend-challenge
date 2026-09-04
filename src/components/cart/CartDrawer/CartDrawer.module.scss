@@ -44,6 +44,7 @@
 }
 .back svg {
   width: 24px;
+  height: 24px;
 }
 .items {
   display: flex;
@@ -113,12 +114,24 @@
   text-align: center;
 }
 .stepper button {
+  position: relative;
   height: 100%;
   background: transparent;
   color: var(--muted);
 }
+.stepper button::after,
+.trash::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  content: '';
+}
 .trash {
   @include focus-ring;
+  position: relative;
   display: grid;
   width: 36px;
   height: 36px;

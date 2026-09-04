@@ -110,6 +110,16 @@ button {
   font-weight: 600;
 }
 
+img[data-loaded] {
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+img[data-loaded='false'] {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
