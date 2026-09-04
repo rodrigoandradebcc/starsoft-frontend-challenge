@@ -22,14 +22,6 @@ export function BagIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-export function EthIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <circle cx="12" cy="12" r="12" fill="#627EEA" />
-      <path fill="#fff" d="m12 3-5 9 5 3 5-3-5-9Zm0 13-5-3 5 8 5-8-5 3Z" />
-    </svg>
-  );
-}
 export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -47,14 +39,16 @@ export function ArrowIcon(props: SVGProps<SVGSVGElement>) {
 export function TrashIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 26 26"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.7"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden="true"
       {...props}
     >
-      <path d="M5 7h14M9 7V4h6v3m2 0-1 13H8L7 7m3 4v5m4-5v5" />
+      <path d="M20.7743 10.1783C20.7743 10.1783 20.1906 17.4185 19.8519 20.4682C19.6907 21.9249 18.7909 22.7784 17.3171 22.8053C14.5124 22.8558 11.7045 22.859 8.90092 22.7999C7.483 22.7709 6.59827 21.9066 6.44025 20.4758C6.09947 17.3991 5.51897 10.1783 5.51897 10.1783M22.2613 6.70773H4.03149M18.7487 6.70771C17.9048 6.70771 17.1781 6.11108 17.0126 5.28441L16.7513 3.97721C16.5901 3.37413 16.044 2.95703 15.4216 2.95703H10.8711C10.2487 2.95703 9.70255 3.37413 9.5413 3.97721L9.28008 5.28441C9.11453 6.11108 8.38783 6.70771 7.54395 6.70771" />
     </svg>
   );
 }

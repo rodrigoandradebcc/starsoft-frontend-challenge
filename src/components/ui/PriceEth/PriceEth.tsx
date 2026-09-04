@@ -1,10 +1,12 @@
-import { EthIcon } from '@/components/icons/Icons';
+import Image from 'next/image';
 import { formatEth } from '@/lib/format/eth';
 import styles from './PriceEth.module.scss';
+
 export default function PriceEth({ value, compact = false }: { value: number; compact?: boolean }) {
+  const size = compact ? 22 : 29;
   return (
     <span className={compact ? styles.compact : styles.price}>
-      <EthIcon />
+      <Image src="/eth.png" alt="" width={size} height={size} className={styles.icon} />
       {formatEth(value)}
     </span>
   );

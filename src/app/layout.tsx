@@ -33,6 +33,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className={poppins.variable}>
       <body>
+        <noscript>
+          <style>{`img { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
         <a className="skipLink" href="#conteudo">
           Pular para o conteúdo
         </a>

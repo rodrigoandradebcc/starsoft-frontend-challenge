@@ -84,6 +84,7 @@
   width: max-content;
 }
 .info h3 {
+  align-self: stretch;
   overflow: hidden;
   font-size: 13px;
   font-weight: 500;
@@ -92,6 +93,7 @@
   white-space: nowrap;
 }
 .info p {
+  align-self: stretch;
   overflow: hidden;
   margin: 4px 0 8px;
   color: var(--muted);
@@ -126,6 +128,8 @@
 }
 .trash svg {
   width: 19px;
+  height: 19px;
+  color: var(--text);
 }
 .empty {
   margin: auto;
@@ -179,8 +183,5 @@
   }
   .drawer h2 {
     font-size: 18px;
-  }
-  .info p {
-    max-width: 175px;
   }
 }

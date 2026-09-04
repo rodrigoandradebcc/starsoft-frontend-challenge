@@ -28,9 +28,17 @@
 .imageLink img {
   object-fit: contain;
   padding: 20px;
-  transition: transform 0.35s ease;
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
 }
-.card:hover .imageLink img {
+.imageLink img.imageLoaded {
+  opacity: 1;
+  transform: none;
+}
+.card:hover .imageLink img.imageLoaded {
   transform: scale(1.045);
 }
 .body {

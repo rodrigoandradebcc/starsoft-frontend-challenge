@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
@@ -17,6 +18,7 @@ export default function ProductCard({
 }) {
   const dispatch = useAppDispatch();
   const inCart = useAppSelector((state) => state.cart.items.some(({ id }) => id === product.id));
+  const [loaded, setLoaded] = useState(false);
   return (
     <motion.article
       className={styles.card}
@@ -36,6 +38,11 @@ export default function ProductCard({
           fill
           sizes="(max-width: 640px) 90vw, (max-width: 1024px) 44vw, (max-width: 1280px) 30vw, 300px"
           priority={priority}
+          className={loaded ? styles.imageLoaded : undefined}
+          onLoad={() => setLoaded(true)}
+          ref={(node) => {
+            if (node?.complete) setLoaded(true);
+          }}
         />
       </Link>
       <div className={styles.body}>
