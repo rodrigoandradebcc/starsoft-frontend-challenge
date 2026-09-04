@@ -4,7 +4,7 @@ import { ALLOWED_IMAGE_HOSTS } from './src/lib/config/images';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
+  output: process.env.VERCEL ? undefined : 'standalone',
   sassOptions: { includePaths: [path.join(process.cwd(), 'src/styles')] },
   images: {
     remotePatterns: ALLOWED_IMAGE_HOSTS.map((hostname) => ({
