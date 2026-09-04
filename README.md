@@ -4,6 +4,10 @@ Marketplace responsivo de itens digitais desenvolvido para o desafio front-end d
 aplicação consome a API pública atual, renderiza a primeira página no servidor e mantém um carrinho
 de compras persistente no navegador.
 
+## Demonstração
+
+[Assistir ao vídeo de demonstração](https://jam.dev/c/43e93671-9f8a-427e-a016-5c5b1c96cdef)
+
 ## Funcionalidades
 
 - Listagem paginada com “Carregar mais” e indicador de progresso
