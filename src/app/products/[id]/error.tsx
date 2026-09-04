@@ -1,5 +1,16 @@
 'use client';
-export default function ProductError({ reset }: { reset: () => void }) {
+import { useEffect } from 'react';
+
+export default function ProductError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  useEffect(() => {
+    console.error('[product]', error.digest ?? error.message, error);
+  }, [error]);
   return (
     <main className="statusPage">
       <div className="statusCard">

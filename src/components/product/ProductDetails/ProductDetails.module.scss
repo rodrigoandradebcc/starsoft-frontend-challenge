@@ -25,7 +25,7 @@
 .visual {
   position: relative;
   min-height: 590px;
-  border-radius: 14px;
+  border-radius: var(--radius);
   background: var(--thumbnail);
 }
 .visual::before {

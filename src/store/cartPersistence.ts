@@ -1,3 +1,4 @@
+import { isAllowedImageUrl } from '@/lib/config/images';
 import type { CartItem } from './cartSlice';
 
 interface PersistedCart {
@@ -12,8 +13,7 @@ function isValidItem(value: unknown): value is CartItem {
     typeof item.id === 'string' &&
     typeof item.name === 'string' &&
     typeof item.description === 'string' &&
-    typeof item.image === 'string' &&
-    item.image.startsWith('https://softstar.s3.amazonaws.com/items/') &&
+    isAllowedImageUrl(item.image) &&
     typeof item.price === 'number' &&
     Number.isFinite(item.price) &&
     item.price >= 0 &&

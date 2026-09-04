@@ -35,12 +35,12 @@ a {
 
 :root {
   --primary: #ff8310;
-  --surface: #18191f;
-  --background: #202020;
+  --surface: #232323;
+  --background: #191a20;
   --surface-alt: #393939;
-  --thumbnail: #202129;
+  --thumbnail: #191a20;
   --text: #fff;
-  --muted: #a7a7aa;
+  --muted: #ccc;
   --border: rgb(255 255 255 / 8%);
   --radius: 8px;
 }
@@ -80,7 +80,7 @@ button {
   padding: 10px 14px;
   border-radius: var(--radius);
   background: var(--primary);
-  color: #171717;
+  color: var(--text);
   transform: translateY(-160%);
   &:focus {
     transform: translateY(0);
@@ -104,7 +104,7 @@ button {
 }
 .statusAction {
   background: var(--primary);
-  color: #161616;
+  color: var(--text);
   border-radius: var(--radius);
   padding: 12px 24px;
   font-weight: 600;

@@ -1,11 +1,12 @@
 'use client';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { hydrateCart } from './cartSlice';
+import { hydrateCart, type CartItem } from './cartSlice';
 import { parseCart, serializeCart } from './cartPersistence';
 import { makeStore } from './store';
 
 const storageKey = 'starsoft-cart-v1';
+
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [store] = useState(makeStore);
   useEffect(() => {
@@ -16,9 +17,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         store.dispatch(hydrateCart([]));
       }
     }, 0);
+    let lastItems: CartItem[] | null = null;
     const unsubscribe = store.subscribe(() => {
-      const state = store.getState();
-      if (state.cart.hydrated) localStorage.setItem(storageKey, serializeCart(state.cart.items));
+      const { items, hydrated } = store.getState().cart;
+      if (!hydrated || items === lastItems) return;
+      lastItems = items;
+      try {
+        localStorage.setItem(storageKey, serializeCart(items));
+      } catch {}
     });
     return () => {
       window.clearTimeout(hydrateTimer);

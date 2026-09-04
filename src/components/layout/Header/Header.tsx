@@ -13,6 +13,7 @@ export default function Header() {
   const count = useAppSelector((state) =>
     state.cart.items.reduce((sum, item) => sum + item.quantity, 0),
   );
+  const drawerRequested = useAppSelector((state) => state.ui.cartEverOpened);
   return (
     <>
       <header className={styles.header}>
@@ -31,7 +32,7 @@ export default function Header() {
           </button>
         </div>
       </header>
-      <CartDrawer />
+      {drawerRequested ? <CartDrawer /> : null}
     </>
   );
 }

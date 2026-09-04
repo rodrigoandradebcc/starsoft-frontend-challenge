@@ -24,7 +24,7 @@
   overflow: hidden;
   height: 9px;
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--surface-alt);
 }
 .track span {
@@ -47,7 +47,7 @@
 }
 .load p {
   margin-top: 12px;
-  color: #ffb36c;
+  color: var(--primary);
   font-size: 13px;
 }
 .load p button {

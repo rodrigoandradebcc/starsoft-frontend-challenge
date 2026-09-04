@@ -10,11 +10,18 @@ export class ApiError extends Error {
   }
 }
 
-export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
+export const CATALOG_REVALIDATE_SECONDS = 300;
+
+interface ApiFetchOptions extends RequestInit {
+  revalidate?: number;
+}
+
+export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): Promise<T> {
+  const { revalidate = CATALOG_REVALIDATE_SECONDS, ...init } = options;
   const response = await fetch(`${env.apiBaseUrl}${path}`, {
     ...init,
-    cache: 'no-store',
-    headers: { Accept: 'application/json', ...init?.headers },
+    next: { revalidate },
+    headers: { Accept: 'application/json', ...init.headers },
   });
   if (!response.ok) {
     let message = `A API respondeu com o status ${response.status}.`;

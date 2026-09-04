@@ -1,3 +1,4 @@
+import { isAllowedImageUrl } from '@/lib/config/images';
 import { apiFetch } from './client';
 import {
   DEFAULT_PAGE_SIZE,
@@ -27,8 +28,7 @@ function isApiProduct(value: unknown): value is ApiProduct {
     Number.isInteger(product.id) &&
     typeof product.name === 'string' &&
     typeof product.description === 'string' &&
-    typeof product.image === 'string' &&
-    product.image.startsWith('https://softstar.s3.amazonaws.com/items/') &&
+    isAllowedImageUrl(product.image) &&
     (typeof product.price === 'string' || typeof product.price === 'number') &&
     typeof product.createdAt === 'string'
   );
@@ -63,16 +63,27 @@ async function list(params: ListProductsParams = {}): Promise<ProductPage> {
   };
 }
 
+const MAX_ROWS = 50;
+const MAX_PAGES = 50;
+
+async function listAll(): Promise<Product[]> {
+  const products: Product[] = [];
+  for (let pageNumber = 1; pageNumber <= MAX_PAGES; pageNumber += 1) {
+    const page = await list({ page: pageNumber, rows: MAX_ROWS, sortBy: 'id', orderBy: 'ASC' });
+    products.push(...page.products);
+    if (!page.hasNextPage) break;
+  }
+  return products;
+}
+
+async function listAllIds(): Promise<string[]> {
+  return (await listAll()).map((product) => product.id);
+}
+
 async function getById(id: string): Promise<Product | undefined> {
   const numericId = Number(id);
   if (!Number.isInteger(numericId) || numericId < 1) return undefined;
-  let pageNumber = 1;
-  do {
-    const page = await list({ page: pageNumber, rows: 50, sortBy: 'id', orderBy: 'ASC' });
-    const product = page.products.find((item) => item.id === id);
-    if (product || !page.hasNextPage) return product;
-    pageNumber += 1;
-  } while (true);
+  return (await listAll()).find((product) => product.id === id);
 }
 
-export const productsService = { list, getById };
+export const productsService = { list, listAll, listAllIds, getById };
