@@ -42,7 +42,9 @@ export default function ProductCard({
         <Link href={`/products/${product.id}`}>
           <h2>{product.name}</h2>
         </Link>
-        <p>{product.description}</p>
+        <p>
+          <span>{product.description}</span>
+        </p>
         <PriceEth value={product.price} />
         <motion.button
           whileTap={{ scale: 0.98 }}

@@ -1,5 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
 import { BagIcon } from '@/components/icons/Icons';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -19,7 +20,7 @@ export default function Header() {
       <header className={styles.header}>
         <div className={styles.inner}>
           <Link className={styles.logo} href="/" aria-label="Starsoft — página inicial">
-            starsoft
+            <Image src="/logo.svg" alt="Starsoft" width={101} height={38} priority unoptimized />
           </Link>
           <button
             className={styles.cart}

@@ -47,14 +47,17 @@
   white-space: nowrap;
 }
 .body p {
-  display: -webkit-box;
-  overflow: hidden;
-  min-height: 38px;
+  min-height: 33px;
   margin: 9px 0 20px;
   color: var(--muted);
   font-size: 11px;
+}
+.body p span {
+  display: -webkit-box;
+  overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 .body button {
   @include focus-ring;
