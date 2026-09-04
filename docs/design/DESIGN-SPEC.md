@@ -70,7 +70,7 @@ Extraído dos screenshots do Figma em `docs/design/`:
 | `load-bt`   | com itens restantes | barra parcial + "Carregar mais" `#393939`  |
 | `load-bt`   | fim da lista        | barra 100% + "Você já viu tudo"            |
 
-> **AMBIGUIDADE A RESOLVER:** no design system o `buy-bt` aparece com "COMPRAR" em cinza `#393939` e "ADICIONADO AO CARRINHO" em laranja, mas na home (`01-home-grid.png`) o "COMPRAR" é laranja. Implementar seguindo a home (COMPRAR laranja → ADICIONADO AO CARRINHO laranja com texto trocado) e confirmar com o usuário.
+> **DECIDIDO:** o Figma se contradiz — no frame do design system o `buy-bt` mostra "COMPRAR" em cinza `#393939`, mas na home (`01-home-grid.png`) ele é laranja. Vale a home: **COMPRAR laranja `#FF8310`**, trocando apenas o texto para "ADICIONADO AO CARRINHO" quando o item entra no carrinho.
 
 ## Overlay de checkout (`03-cart-overlay.png`)
 
