@@ -1,0 +1,41 @@
+@use '../../../styles/mixins' as *;
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgb(32 32 32 / 92%);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+}
+.inner {
+  @include container;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  @include focus-ring;
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  transform: rotate(-4deg);
+}
+.cart {
+  @include focus-ring;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  font-size: 17px;
+}
+.cart svg {
+  width: 29px;
+  height: 29px;
+  color: var(--primary);
+  transition: transform 0.2s ease;
+}
+.cart:hover svg {
+  transform: translateY(-2px);
+}
