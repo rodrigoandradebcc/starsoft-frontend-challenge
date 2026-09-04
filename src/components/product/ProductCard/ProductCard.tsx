@@ -4,6 +4,7 @@ import Link from 'next/link';
 import FadeImage from '@/components/ui/FadeImage/FadeImage';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
 import type { Product } from '@/lib/api/types';
+import { selectIsInCart } from '@/store/cartSelectors';
 import { addItem } from '@/store/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import styles from './ProductCard.module.scss';
@@ -16,7 +17,7 @@ export default function ProductCard({
   preload?: boolean;
 }) {
   const dispatch = useAppDispatch();
-  const inCart = useAppSelector((state) => state.cart.items.some(({ id }) => id === product.id));
+  const inCart = useAppSelector(selectIsInCart(product.id));
   return (
     <motion.article
       className={styles.card}

@@ -1,62 +1,37 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import { ArrowIcon, TrashIcon } from '@/components/icons/Icons';
-import FadeImage from '@/components/ui/FadeImage/FadeImage';
+import { useCallback, useRef } from 'react';
+import { ArrowIcon } from '@/components/icons/Icons';
 import PriceEth from '@/components/ui/PriceEth/PriceEth';
-import { addItem, clearCart, decreaseItem, removeItem } from '@/store/cartSlice';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
+import { selectCartItems, selectCartTotal } from '@/store/cartSelectors';
+import { addItem, decreaseItem, removeItem } from '@/store/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeCart } from '@/store/uiSlice';
 import styles from './CartDrawer.module.scss';
+import CartItemRow from './CartItemRow';
+import { useCheckout } from './useCheckout';
 
 export default function CartDrawer() {
   const dispatch = useAppDispatch();
   const open = useAppSelector((state) => state.ui.cartOpen);
-  const items = useAppSelector((state) => state.cart.items);
-  const [finished, setFinished] = useState(false);
+  const items = useAppSelector(selectCartItems);
+  const total = useAppSelector(selectCartTotal);
+  const { finished, finish } = useCheckout();
   const drawerRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const openerRef = useRef<HTMLElement | null>(null);
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  useEffect(() => {
-    if (!open) return;
-    openerRef.current = document.activeElement as HTMLElement | null;
-    closeButtonRef.current?.focus();
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        dispatch(closeCart());
-        return;
-      }
-      if (event.key !== 'Tab' || !drawerRef.current) return;
-      const focusable = Array.from(
-        drawerRef.current.querySelectorAll<HTMLElement>(
-          'button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])',
-        ),
-      );
-      const first = focusable[0];
-      const last = focusable.at(-1);
-      if (!first || !last) return;
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', onKey);
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', onKey);
-      openerRef.current?.focus();
-    };
-  }, [dispatch, open]);
-  const finish = () => {
-    setFinished(true);
-    dispatch(clearCart());
-    window.setTimeout(() => setFinished(false), 2200);
-  };
+
+  const close = useCallback(() => dispatch(closeCart()), [dispatch]);
+
+  useBodyScrollLock(open);
+  useFocusTrap({
+    active: open,
+    containerRef: drawerRef,
+    initialFocusRef: closeButtonRef,
+    onEscape: close,
+  });
+
   return (
     <AnimatePresence>
       {open ? (
@@ -65,7 +40,7 @@ export default function CartDrawer() {
             className={styles.backdrop}
             type="button"
             aria-label="Fechar carrinho"
-            onClick={() => dispatch(closeCart())}
+            onClick={close}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -89,7 +64,7 @@ export default function CartDrawer() {
                 className={styles.back}
                 type="button"
                 aria-label="Fechar carrinho"
-                onClick={() => dispatch(closeCart())}
+                onClick={close}
               >
                 <ArrowIcon />
               </motion.button>
@@ -99,53 +74,13 @@ export default function CartDrawer() {
               <AnimatePresence initial={false}>
                 {items.length ? (
                   items.map((item) => (
-                    <motion.article
-                      layout
+                    <CartItemRow
                       key={item.id}
-                      className={styles.item}
-                      initial={{ opacity: 0, scale: 0.92 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.92 }}
-                      transition={{ duration: 0.22, ease: 'easeOut' }}
-                    >
-                      <div className={styles.thumb}>
-                        <FadeImage src={item.image} alt="" fill sizes="118px" />
-                      </div>
-                      <div className={styles.info}>
-                        <h3>{item.name}</h3>
-                        <p>{item.description}</p>
-                        <PriceEth value={item.price} compact />
-                        <div className={styles.stepper}>
-                          <motion.button
-                            whileTap={{ scale: 0.85 }}
-                            type="button"
-                            aria-label="Diminuir quantidade"
-                            onClick={() => dispatch(decreaseItem(item.id))}
-                          >
-                            −
-                          </motion.button>
-                          <span>{item.quantity}</span>
-                          <motion.button
-                            whileTap={{ scale: 0.85 }}
-                            type="button"
-                            aria-label="Aumentar quantidade"
-                            onClick={() => dispatch(addItem(item))}
-                          >
-                            +
-                          </motion.button>
-                        </div>
-                      </div>
-                      <motion.button
-                        whileHover={{ scale: 1.08 }}
-                        whileTap={{ scale: 0.9 }}
-                        className={styles.trash}
-                        type="button"
-                        aria-label={`Remover item ${item.name}`}
-                        onClick={() => dispatch(removeItem(item.id))}
-                      >
-                        <TrashIcon />
-                      </motion.button>
-                    </motion.article>
+                      item={item}
+                      onIncrease={() => dispatch(addItem(item))}
+                      onDecrease={() => dispatch(decreaseItem(item.id))}
+                      onRemove={() => dispatch(removeItem(item.id))}
+                    />
                   ))
                 ) : (
                   <motion.div

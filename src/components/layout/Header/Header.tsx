@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BagIcon } from '@/components/icons/Icons';
+import { selectCartCount } from '@/store/cartSelectors';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { openCart } from '@/store/uiSlice';
 import styles from './Header.module.scss';
@@ -11,9 +12,7 @@ const CartDrawer = dynamic(() => import('@/components/cart/CartDrawer/CartDrawer
 
 export default function Header() {
   const dispatch = useAppDispatch();
-  const count = useAppSelector((state) =>
-    state.cart.items.reduce((sum, item) => sum + item.quantity, 0),
-  );
+  const count = useAppSelector(selectCartCount);
   const drawerRequested = useAppSelector((state) => state.ui.cartEverOpened);
   return (
     <>
