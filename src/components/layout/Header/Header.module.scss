@@ -8,7 +8,7 @@
   backdrop-filter: blur(14px);
 }
 .inner {
-  @include container;
+  @include header-container;
   height: 92px;
   display: flex;
   align-items: center;
