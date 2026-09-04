@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import Footer from '@/components/layout/Footer/Footer';
 import Header from '@/components/layout/Header/Header';
 import PageTransition from '@/components/layout/PageTransition/PageTransition';
+import { resolveSiteUrl } from '@/lib/config/site-url';
 import { Providers } from './providers';
 import '@/styles/globals.scss';
 
@@ -14,7 +15,7 @@ const poppins = Poppins({
   display: 'swap',
 });
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  metadataBase: resolveSiteUrl(),
   title: { default: 'Starsoft NFT Marketplace', template: '%s | Starsoft' },
   description: 'Descubra itens únicos e monte sua coleção no marketplace da Starsoft.',
   openGraph: {

@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { productsService } from '@/lib/api/products.service';
+import { getSiteUrl } from '@/lib/config/site-url';
 
 export const revalidate = 300;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+  const base = getSiteUrl();
   const home: MetadataRoute.Sitemap = [{ url: base, changeFrequency: 'daily', priority: 1 }];
   try {
     const products = await productsService.listAll();
